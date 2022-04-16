@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 int main(void) {    
 
@@ -88,7 +89,7 @@ int main(void) {
     */
 
 
-    //----------------- EMCONTRAR UMA SUBSTRING COM A FUNÇÃO STRSTR ----------------
+    /*//----------------- EMCONTRAR UMA SUBSTRING COM A FUNÇÃO STRSTR ----------------
     
     char palavra[50] = {"Bom dia simpatia"};
     char str[] = {"dia"};
@@ -101,6 +102,121 @@ int main(void) {
     }
     else{
         printf("Ponteiro nulo.\n");    
+    }
+    */
+
+
+    
+    /*//------ CONVERTER STRINGS PARA MAIUSCULO OU MINUSCULO COM TOUPPER E TOLOWER -------
+
+    char palavra1[50] = {"Bom dia simpatia"};
+    char palavra2[50] = {"BOM DIA SIMPATIA"};
+
+    for(int i = 0; i < strlen(palavra1); i++){
+        printf("%c", toupper(palavra1[i]));
+    }
+
+    printf("\n");
+    
+    for(int i = 0; i < strlen(palavra2); i++){
+        printf("%c", tolower(palavra2[i]));
+    }
+    */
+
+    
+    /*//-------------------- DIVIDIR STRINGS EM TOKENS COM STRTOK ---------------------
+
+    char palavra[50] = {"Bom!dia.simpatia bom dia"};
+    char *pt;
+
+    pt = strtok(palavra, "!. ");
+    
+    while(pt){
+        printf("token: %s\n", pt);
+        pt = strtok(NULL, "!. ");
+    }
+    */
+
+
+    /*/--------------------------- MATRIZ DE STRINGS --------------------------
+
+    char nomes[5][25];
+    int l;
+    
+    for(l = 0; l < 5; l++){
+        printf("Digite o nome da posição %d: ", l + 1);
+        fgets(nomes[l], 25, stdin);
+    }
+
+    for(l = 0; l < 5; l++){
+        printf("Nome na posição %d: %s", l + 1, nomes[l]);
+    }
+    */
+
+
+
+    /*//------------------- DESCOBRIR SE UMA PALAVRA É PALINDROMA --------------------
+
+    char palavra1[30];
+    char palavra2[30];
+    
+    printf("Digite uma palavra: ");
+    scanf("%s", palavra1);
+
+    int j = 0;
+
+    unsigned f = strlen(palavra1);
+    
+    for(int i = f - 1; i >= 0; i--){
+        palavra2[j] = palavra1[i];
+        j++;
+    }
+    
+    int pl = strcmp(palavra1, palavra2);
+    
+    if (pl == 0){
+        printf("É palindroma");
+    }
+    else{
+        printf("Não é palindroma");
+    }
+    */
+
+
+    
+    //------------------------ DESCOBRIR SE UMA FRASE É PALINDROMA -------------------------
+
+    char palavra[50], copia[50];
+    int i, tam, j = 0, diferente = 0;
+
+    printf("Digite uma frase: ");
+    scanf("%50[^\n]", palavra);
+
+    // -> Precisamos remover qualquer simbolo ou espaço da string.
+
+    for(i = 0; i < strlen(palavra); i++){
+        if(palavra[i] != '!' && palavra[i] != '?' 
+        && palavra[i] != ' ' && palavra[i] != '.'){
+            copia[j++] = palavra[i];
+        }
+        
+    }
+
+    copia[j] = '\0';
+
+    printf("\nOriginal: %s\nCopia: %s\n", palavra, copia);
+    
+    tam = strlen(copia) - 1;
+    for(i = 0; i < strlen(copia); i++){
+        if(copia[i] != copia[tam--]){
+            diferente++;
+        }
+    }
+
+    if(diferente == 0){
+        printf("\nÉ palindroma\n");
+    }else{
+        printf("\nNão é palindroma\n");
     }
     
   return 0;
