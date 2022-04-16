@@ -72,15 +72,36 @@ int main(void) {
     */
 
     
-    //-------- PROCURANDO CARACTERES EM UMA STRING COM STRCHR E STRRCHR --------
+    /*//-------- PROCURANDO CARACTERES EM UMA STRING COM STRCHR E STRRCHR --------
 
     // Strchr -> Retorna a primeira ocorrência
     // Strrchr -> Retorna a segunda ocorrência
     
     char palavra[50] = {"abacate"};
+    char *letra;
 
-   
+    letra = strrchr(palavra, 'a');
     
-        
+    printf("\n%c\n", *letra);
+    printf("\n%c\n", *(letra + 1));
+    printf("\n%c\n", *(letra + 2));
+    */
+
+
+    //----------------- EMCONTRAR UMA SUBSTRING COM A FUNÇÃO STRSTR ----------------
+    
+    char palavra[50] = {"Bom dia simpatia"};
+    char str[] = {"dia"};
+    char *ponteiro;
+
+    ponteiro = strstr(palavra, str);
+    
+    if(ponteiro){
+        printf("\n%c%c%c\n", *ponteiro, *(ponteiro + 1), *(ponteiro + 2));
+    }
+    else{
+        printf("Ponteiro nulo.\n");    
+    }
+    
   return 0;
 }
